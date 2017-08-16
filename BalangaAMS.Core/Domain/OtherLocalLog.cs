@@ -10,5 +10,6 @@ namespace BalangaAMS.Core.Domain
         public string ChurchId { get; set; }
         [Required]
         public virtual GatheringSession GatheringSession { get; set; }
+        //Just added a comment
     }
 }
