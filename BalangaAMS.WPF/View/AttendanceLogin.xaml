@@ -1,0 +1,112 @@
+﻿<Window x:Class="BalangaAMS.WPF.View.AttendanceLogin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns:domain="clr-namespace:BalangaAMS.Core.Domain;assembly=BalangaAMS.Core"
+        Title="Attendance Login" Height="671" Width="1204" WindowStartupLocation="CenterScreen"
+        Icon="SystemImage\logging.png" Loaded="AttendanceLogin_Loaded_1" Closing="Window_Closing_1"
+        KeyDown="Window_KeyDown" ShowInTaskbar="False">
+    
+    <Window.Resources>
+        <Style x:Key="AutoCompleteStyle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe UI" />
+            <Setter Property="FontSize" Value="13.333" />
+            <Setter Property="Foreground" Value="#FF0A0A0A" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+
+        <DataTemplate x:Key="BrethrenAutoComplete" DataType="{x:Type domain:BrethrenBasic}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding ChurchId}" Style="{StaticResource AutoCompleteStyle}" Margin="10 0 0 0" />
+                <TextBlock Text="{Binding Name}" Style="{StaticResource AutoCompleteStyle}" Margin="10 0 0 0" />
+            </StackPanel>
+        </DataTemplate>
+        
+    </Window.Resources>   
+    <Grid Background="LightGray">
+        <GroupBox Background="LightBlue" Name="SearchGroupBox" Header="Search Brethren" HorizontalAlignment="Left" Margin="40,90,0,0" VerticalAlignment="Top" Height="90" Width="290">
+            <Grid>
+                <TextBlock Text="Church ID:" HorizontalAlignment="Left" Margin="6,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.182,-1.188"/>
+                <TextBlock Text="Name:" HorizontalAlignment="Left" Margin="27,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+
+                <telerik:RadAutoCompleteBox
+                    WatermarkContent="Enter Name..."
+                    TextSearchPath="Name"
+                    TextSearchMode="Contains"
+                    SelectionMode="Single"
+                    HorizontalAlignment="Left"
+                    ItemsSource="{Binding}"
+                    AutoCompleteMode="Suggest"
+                    Margin="75,6,0,0" 
+                    VerticalAlignment="Top" 
+                    Width="200"
+                    DropDownWidth="Auto"
+                    Name="AutoCompleteBoxName"
+                    DropDownItemTemplate="{StaticResource BrethrenAutoComplete}" 
+                    SelectionChanged="AutoCompleteBoxName_SelectionChanged"/>
+
+                <telerik:RadAutoCompleteBox
+                    WatermarkContent="Enter Church ID..."
+                    TextSearchPath="ChurchId"
+                    TextSearchMode="StartsWith"
+                    SelectionMode="Single"
+                    HorizontalAlignment="Left"
+                    ItemsSource="{Binding}"
+                    AutoCompleteMode="Suggest"
+                    Margin="75,41,0,0" 
+                    VerticalAlignment="Top" 
+                    Width="200"
+                    DropDownWidth="Auto"
+                    Name="AutoCompleteBoxChurchId"
+                    DropDownItemTemplate="{StaticResource BrethrenAutoComplete}"
+                    SelectionChanged="AutoCompleteBoxChurchId_SelectionChanged"/>
+            </Grid>
+        </GroupBox>
+
+        <TextBlock Name="GatheringTextBlock" HorizontalAlignment="Left" Margin="632,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="22"/>
+        <TextBlock Name="GatheringDateTextBlock" HorizontalAlignment="Left" Margin="630,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="22"/>  
+        <TextBlock HorizontalAlignment="Left" Margin="500,105,0,0" TextWrapping="Wrap" Text="Gathering :" VerticalAlignment="Top" FontSize="22"/>
+        <TextBlock HorizontalAlignment="Left" Margin="422,145,0,0" TextWrapping="Wrap" Text="Date of Gathering :" VerticalAlignment="Top" FontSize="22"/>
+        <TextBlock HorizontalAlignment="Left" Margin="280,30,0,0" TextWrapping="Wrap" Text="BALANGA ATTENDANCE MONITORING SYSTEM" 
+                   VerticalAlignment="Top" FontFamily="Segoe UI Semibold" Foreground="#FF312D87" FontSize="22" FontWeight="Bold"/>
+        <TabControl HorizontalAlignment="Left" IsTabStop="False" Height="290" Margin="45,200,0,0" VerticalAlignment="Top" Width="750">
+            <TabItem Header="Brethren" IsTabStop="False">
+                <Grid Background="#FFE5E5E5">
+                    <Image Name="ImageControl" HorizontalAlignment="Left" Height="230" Margin="19,19,0,0" 
+                       VerticalAlignment="Top" Width="260" Stretch="Fill"/>
+
+                    <TextBlock Text="Church ID :" Foreground="DarkBlue" HorizontalAlignment="Left" Margin="311,23,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="22"/>
+                    <TextBlock Name="ChurchIdBlock" Foreground="DarkBlue" HorizontalAlignment="Left" Margin="445,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="22"/>
+
+                    <TextBlock Text="Name :" Foreground="DarkBlue" HorizontalAlignment="Left" Margin="348,68,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="22"/>
+                    <TextBlock Name="NameBlock" Foreground="DarkBlue" HorizontalAlignment="Left" Margin="445,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="22"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <GroupBox Background="LightBlue" Header="Device Status" HorizontalAlignment="Left" Margin="45,500,0,0" VerticalAlignment="Top" Height="45" Width="360">
+           <Grid>
+                <TextBlock Name="DeviceStatus" HorizontalAlignment="Left" Margin="7,5,0,-116" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox Name="TimeGroup" Background="LightBlue" Header="Time" HorizontalAlignment="Left" Margin="45,540,0,0" VerticalAlignment="Top" Height="95" Width="245">
+            <Grid>
+                <TextBlock Name="TimeText" HorizontalAlignment="Left" FontSize="35" FontWeight="Bold" Margin="4,9,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox Name="LoginCountGroup" Background="LightBlue" Header="Attendees Count" HorizontalAlignment="Left" Margin="293,541,0,0" VerticalAlignment="Top" Height="94" Width="110">
+            <Grid>
+                <TextBlock Name="LoginCountText" HorizontalAlignment="Center"  FontSize="40" FontWeight="Bold" Margin="11,5,12,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            </Grid>
+        </GroupBox>
+        <TabControl HorizontalAlignment="Left" IsTabStop="False" Height="290" Margin="800,200,0,0" VerticalAlignment="Top" Width="190">
+            <TabItem Header="FingerPrint" IsTabStop="False">
+                <Grid Background="#FFE5E5E5">
+                    <Image Name="FingerPrintImage" HorizontalAlignment="Left" Height="250" Margin="5,2,0,0"
+                           VerticalAlignment="Top" Width="170"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <RichTextBox Name="Logs" Background="LightBlue" IsTabStop="False" IsReadOnly="True" HorizontalAlignment="Left" Height="135" Margin="415,500,0,0" 
+                     VerticalScrollBarVisibility="Visible" VerticalAlignment="Top" Width="575" RenderTransformOrigin="6.65,0.1" />
+    </Grid>
+</Window>

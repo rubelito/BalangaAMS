@@ -1,0 +1,26 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:tr="http://schemas.telerik.com/wpf"
+        xmlns:helperDomain="clr-namespace:BalangaAMS.Core.HelperDomain;assembly=BalangaAMS.Core"
+        x:Class="BalangaAMS.WPF.View.Report.ReportBirthDayCelebrants"
+        Title="BirthDay Celebrants Report" Height="391" Width="694" ShowInTaskbar="False">
+    
+    <Window.Resources>
+        <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type helperDomain:MonthofYear}"
+                x:Key="MonthProvider">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="helperDomain:MonthofYear" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
+    
+    <Grid>
+
+        <tr:ReportViewer Name="ReportViewer1" />
+        <TextBlock Text="Month :" HorizontalAlignment="Left" Margin="390,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <ComboBox Name="CboMonth" ItemsSource="{Binding Source={StaticResource MonthProvider}}" 
+                  SelectedIndex="0" HorizontalAlignment="Left" Margin="445,9,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="CboMonth_SelectionChanged"/>
+
+    </Grid>
+</Window>

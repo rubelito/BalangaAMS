@@ -1,0 +1,11 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:tr="http://schemas.telerik.com/wpf" x:Class="BalangaAMS.WPF.View.Report.IndividualMonthlyAttendanceReportForm"
+        Title="Monthly Attendance Report" Height="481" Width="949" Loaded="Window_Loaded_1" ShowInTaskbar="False">
+    <Grid>
+
+        <tr:ReportViewer Name="ReportViewer"/>
+
+    </Grid>
+</Window>

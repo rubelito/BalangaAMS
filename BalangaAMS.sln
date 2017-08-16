@@ -1,0 +1,74 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BalangaAMS.Core", "BalangaAMS.Core\BalangaAMS.Core.csproj", "{EE8B5770-6B69-44E2-AF79-B6B75E2B0725}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BalangaAMS.DataLayer", "BalangaAMS.DataLayer\BalangaAMS.DataLayer.csproj", "{99A420FD-7621-4E55-81BF-83E682E81467}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BalangaAMS.ApplicationLayer", "BalangaAMS.Application\BalangaAMS.ApplicationLayer.csproj", "{6EE53F4A-C8D5-43F3-89FF-3367A7440FA7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BalangaAMS.Test", "BalangaAMS.Test\BalangaAMS.Test.csproj", "{D901C5AB-D909-44F9-83B0-50AD9B81C19E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BalangaAMS.WPF", "BalangaAMS.WPF\BalangaAMS.WPF.csproj", "{980A5E8D-13A2-4AE1-81A5-DD10CCF7DB48}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BalangaAMS.ImportData", "BalangaAMS.ImportData\BalangaAMS.ImportData.csproj", "{B3F82DAC-C026-489F-A5DA-7021AADE98C8}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 7
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://ruby-pc:8080/tfs/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = BalangaAMS.Application\\BalangaAMS.ApplicationLayer.csproj
+		SccProjectName1 = BalangaAMS.Application
+		SccLocalPath1 = BalangaAMS.Application
+		SccProjectUniqueName2 = BalangaAMS.Core\\BalangaAMS.Core.csproj
+		SccProjectName2 = BalangaAMS.Core
+		SccLocalPath2 = BalangaAMS.Core
+		SccProjectUniqueName3 = BalangaAMS.DataLayer\\BalangaAMS.DataLayer.csproj
+		SccProjectName3 = BalangaAMS.DataLayer
+		SccLocalPath3 = BalangaAMS.DataLayer
+		SccProjectUniqueName4 = BalangaAMS.Test\\BalangaAMS.Test.csproj
+		SccProjectName4 = BalangaAMS.Test
+		SccLocalPath4 = BalangaAMS.Test
+		SccProjectUniqueName5 = BalangaAMS.WPF\\BalangaAMS.WPF.csproj
+		SccProjectName5 = BalangaAMS.WPF
+		SccLocalPath5 = BalangaAMS.WPF
+		SccProjectUniqueName6 = BalangaAMS.ImportData\\BalangaAMS.ImportData.csproj
+		SccProjectName6 = BalangaAMS.ImportData
+		SccLocalPath6 = BalangaAMS.ImportData
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EE8B5770-6B69-44E2-AF79-B6B75E2B0725}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE8B5770-6B69-44E2-AF79-B6B75E2B0725}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE8B5770-6B69-44E2-AF79-B6B75E2B0725}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE8B5770-6B69-44E2-AF79-B6B75E2B0725}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99A420FD-7621-4E55-81BF-83E682E81467}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99A420FD-7621-4E55-81BF-83E682E81467}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99A420FD-7621-4E55-81BF-83E682E81467}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99A420FD-7621-4E55-81BF-83E682E81467}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EE53F4A-C8D5-43F3-89FF-3367A7440FA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EE53F4A-C8D5-43F3-89FF-3367A7440FA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EE53F4A-C8D5-43F3-89FF-3367A7440FA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EE53F4A-C8D5-43F3-89FF-3367A7440FA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D901C5AB-D909-44F9-83B0-50AD9B81C19E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D901C5AB-D909-44F9-83B0-50AD9B81C19E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D901C5AB-D909-44F9-83B0-50AD9B81C19E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D901C5AB-D909-44F9-83B0-50AD9B81C19E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{980A5E8D-13A2-4AE1-81A5-DD10CCF7DB48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{980A5E8D-13A2-4AE1-81A5-DD10CCF7DB48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{980A5E8D-13A2-4AE1-81A5-DD10CCF7DB48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{980A5E8D-13A2-4AE1-81A5-DD10CCF7DB48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3F82DAC-C026-489F-A5DA-7021AADE98C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3F82DAC-C026-489F-A5DA-7021AADE98C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3F82DAC-C026-489F-A5DA-7021AADE98C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3F82DAC-C026-489F-A5DA-7021AADE98C8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

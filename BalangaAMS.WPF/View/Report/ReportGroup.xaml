@@ -1,0 +1,23 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:tr="http://schemas.telerik.com/wpf"
+        xmlns:domain="clr-namespace:BalangaAMS.Core.Domain;assembly=BalangaAMS.Core"
+        x:Class="BalangaAMS.WPF.View.Report.ReportGroup" ShowInTaskbar="False"
+        Title="Print Groupings" Height="426" Width="774" Loaded="Window_Loaded_1">
+    <Grid>
+
+        <tr:ReportViewer Name="ReportViewer1"/>
+        <ComboBox Name="CboGroup" ItemsSource="{Binding}" HorizontalAlignment="Left" SelectedIndex="0" Margin="474,9,0,0" VerticalAlignment="Top" Width="130" SelectionChanged="CboGroup_SelectionChanged">
+            <ComboBox.ItemTemplate>
+                <DataTemplate DataType="{x:Type domain:Group}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding GroupName}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <TextBlock Text="Select Group :" HorizontalAlignment="Left" Margin="390,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>

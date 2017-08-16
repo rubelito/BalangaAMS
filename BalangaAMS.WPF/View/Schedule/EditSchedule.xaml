@@ -1,0 +1,42 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns:domainEnum="clr-namespace:BalangaAMS.Core.Domain.Enum;assembly=BalangaAMS.Core"
+        xmlns:helper="clr-namespace:BalangaAMS.WPF.View.Schedule"
+        x:Class="BalangaAMS.WPF.View.Schedule.EditSchedule"
+        Title="EditSchedule" Height="316" Width="454"
+        WindowStyle="None" ShowInTaskbar="False"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        
+        <helper:BoolToIstarted x:Key="BoolToIstarted" />
+        <helper:StringToEnum x:Key="StringToEnum"/>
+        
+        <ObjectDataProvider x:Key="GatheringsProvider" MethodName="GetValues" ObjectType="{x:Type domainEnum:Gatherings}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="domainEnum:Gatherings" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
+
+    <Grid Background="LightGray">
+        <GroupBox Header="Edit Schedule" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="225" Width="420">
+            <Grid>
+                <TextBlock HorizontalAlignment="Left" Margin="34,29,0,0" TextWrapping="Wrap" Text="Gathering Type :" VerticalAlignment="Top" Height="19" Width="94"/>
+                <TextBlock HorizontalAlignment="Left" Margin="90,56,0,0" TextWrapping="Wrap" Text="Date :" VerticalAlignment="Top" Height="19" Width="39"/>
+                <ComboBox Name="CboGatheringType" ItemsSource="{Binding Source={StaticResource GatheringsProvider}}" SelectedValue="{Binding Path=Subject, Mode=OneWay, Converter={StaticResource StringToEnum}}" HorizontalAlignment="Left" Margin="134,19,0,0" VerticalAlignment="Top" Width="120" />
+                <telerik:RadDateTimePicker Name="CboDate" SelectedValue="{Binding Path=Start, Mode=OneWay}" HorizontalAlignment="Left" Margin="134,52,0,0" VerticalAlignment="Top" Width="150"/>
+              
+                <GroupBox Header="Is Started" HorizontalAlignment="Left" Margin="94,99,0,0" VerticalAlignment="Top" Height="75" Width="180">
+                    <Grid>
+                        <RadioButton Name="IsStarted" Content="Started" IsChecked="{Binding Path=IsStarted, Mode=OneWay}" HorizontalAlignment="Left" Margin="19,9,0,0" VerticalAlignment="Top" Height="19" RenderTransformOrigin="0.5,0.5" Width="69"/>
+                        <RadioButton Content="Not Started" IsChecked="{Binding Path=IsStarted, Mode=OneWay ,Converter={StaticResource BoolToIstarted}}" HorizontalAlignment="Left" Margin="19,30,0,0" VerticalAlignment="Top" Height="19" RenderTransformOrigin="0.5,0.5" Width="83"/>
+                    </Grid>
+                </GroupBox>
+            </Grid>
+        </GroupBox>
+        <Button Name="Save" Content="Save" HorizontalAlignment="Left" Margin="260,255,0,-4" VerticalAlignment="Top" Width="75" Height="23" Click="Save_Click"/>
+        <Button Name="Cancel" Content="Cancel" HorizontalAlignment="Left" Margin="351,255,0,-4" VerticalAlignment="Top" Width="75" Height="23" Click="Cancel_Click"/>       
+    </Grid>
+</Window>

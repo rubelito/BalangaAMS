@@ -1,0 +1,14 @@
+﻿<Window x:Class="BalangaAMS.WPF.View.Dialogs.ExportMonthlyAttendanceReportLoading"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
+        Title="Export Monthly Attendance Report Loading" Height="149" Width="324" 
+        WindowStyle="None" Loaded="Window_Loaded_1" ShowInTaskbar="False"
+        WindowStartupLocation="CenterScreen">
+    <Grid Background="LightGray">
+        <Grid Width="200" Height="50">
+            <Image gif:ImageBehavior.AnimatedSource="..\SystemImage\loading.gif"/>
+        </Grid>
+        <TextBlock Text="Exporting Data, please wait....." HorizontalAlignment="Left" Margin="60,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="165"/>
+    </Grid>
+</Window>

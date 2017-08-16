@@ -1,0 +1,113 @@
+﻿<Window x:Class="BalangaAMS.WPF.View.SettingsForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:converters="clr-namespace:BalangaAMS.WPF.View.Converters"
+        Title="Settings Configuration" Height="644" Width="314" WindowStyle="None"
+        WindowStartupLocation="CenterScreen" Loaded="Window_Loaded_1" ShowInTaskbar="False">
+
+    <Window.Resources>
+        <converters:IsNullofEmptyToBoolConverter x:Key="NullofEmptyToBoolConverter" />
+    </Window.Resources>
+
+    <Grid Background="LightGray">       
+        <GroupBox Header="Deployment Information" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="270" Width="290">
+            <Grid>
+                <TextBlock HorizontalAlignment="Left" Margin="19,19,0,0" TextWrapping="Wrap" Text="Division Name :" VerticalAlignment="Top"/>
+                <TextBox Name="DivisionName" HorizontalAlignment="Left" Height="23" Margin="109,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                <Label Content="Ex. BATZAM DIVISION" FontSize="9" FontStyle="Italic" HorizontalAlignment="Left" Margin="110,40,0,0" VerticalAlignment="Top" Width="139"/>
+
+                <TextBlock HorizontalAlignment="Left" Margin="27,64,0,0" TextWrapping="Wrap" Text="Distric Name :" VerticalAlignment="Top"/>
+                <TextBox Name="DistrictName" HorizontalAlignment="Left" Height="23" Margin="109,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                <Label Content="Ex. DISTRICT 1" FontSize="9" FontStyle="Italic" HorizontalAlignment="Left" Margin="110,85,0,0" VerticalAlignment="Top" Width="139"/>
+
+                <TextBlock HorizontalAlignment="Left" Margin="32,109,0,0" TextWrapping="Wrap" Text="Local Name :" VerticalAlignment="Top"/>
+                <TextBox Name="LocalName" HorizontalAlignment="Left" Height="23" Margin="109,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                <Label Content="Ex. Balanga" FontSize="9" FontStyle="Italic" HorizontalAlignment="Left" Margin="110,130,0,0" VerticalAlignment="Top" Width="139"/>
+
+                <TextBlock HorizontalAlignment="Left" Margin="32,150,0,0" TextWrapping="Wrap" Text="Number of days to be considered newly baptised :" VerticalAlignment="Top"/>
+                <TextBox Name="NumberOfDays" HorizontalAlignment="Left" Height="23" Margin="109,174,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                <Label Content="Ex. 365 = 1 year" FontSize="9" FontStyle="Italic" HorizontalAlignment="Left" Margin="110,201,0,0" VerticalAlignment="Top" Width="139"/>
+
+                <Button Name="OkButton" Content="Ok" HorizontalAlignment="Left" Margin="109,221,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="OkButton_Click">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+                            <Setter Property="IsEnabled" Value="False" />
+                            <Style.Triggers>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding ElementName=DivisionName, Path=Text, Converter={StaticResource NullofEmptyToBoolConverter}}" Value="False" />
+                                        <Condition Binding="{Binding ElementName=DistrictName, Path=Text, Converter={StaticResource NullofEmptyToBoolConverter}}" Value="False" />
+                                        <Condition Binding="{Binding ElementName=LocalName, Path=Text, Converter={StaticResource NullofEmptyToBoolConverter}}" Value="False" />
+                                        <Condition Binding="{Binding ElementName=NumberOfDays, Path=Text, Converter={StaticResource NullofEmptyToBoolConverter}}" Value="False" />
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter Property="IsEnabled" Value="True"></Setter>
+                                </MultiDataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Security Password" HorizontalAlignment="Left" Margin="10,280,0,0" VerticalAlignment="Top" Height="305" Width="290">
+            <Grid>
+                <GroupBox Header="Administrator" HorizontalAlignment="Left" Margin="4,0,0,0" VerticalAlignment="Top" Height="139" Width="270">
+                    <Grid>
+                        <TextBlock HorizontalAlignment="Left" Margin="31,8,0,0" TextWrapping="Wrap" Text="Old Password :" VerticalAlignment="Top"/>
+                        <TextBlock HorizontalAlignment="Left" Margin="25,35,0,0" TextWrapping="Wrap" Text="New Password :" VerticalAlignment="Top"/>
+                        <TextBlock HorizontalAlignment="Left" Margin="11,65,0,0" TextWrapping="Wrap" Text="Retype Password :" VerticalAlignment="Top"/>                        
+                        <TextBox Name="OldAdminPassword" HorizontalAlignment="Left" Height="23" Margin="116,4,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                        <TextBox Name="NewAdminPassword" HorizontalAlignment="Left" Height="23" Margin="116,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                        <TextBox Name="RetypeAdminPassWord" HorizontalAlignment="Left" Height="23" Margin="116,64,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                        <Button Name="ChangeAdminPassword" Content="Change" HorizontalAlignment="Left" Margin="119,93,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="ChangeAdminPassword_Click">
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+                                    <Setter Property="IsEnabled" Value="False" />
+                                    <Style.Triggers>
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding ElementName=OldAdminPassword, Path=Text, Converter={StaticResource NullofEmptyToBoolConverter}}" Value="False" />
+                                                <Condition Binding="{Binding ElementName=NewAdminPassword, Path=Text, Converter={StaticResource NullofEmptyToBoolConverter}}" Value="False" />
+                                                <Condition Binding="{Binding ElementName=RetypeAdminPassWord, Path=Text, Converter={StaticResource NullofEmptyToBoolConverter}}" Value="False" />
+                                            </MultiDataTrigger.Conditions>
+                                            <Setter Property="IsEnabled" Value="True"></Setter>
+                                        </MultiDataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </Grid>
+                </GroupBox>
+                
+                <GroupBox Header="User" HorizontalAlignment="Left" Margin="6,136,0,0" VerticalAlignment="Top" Height="148" Width="268">
+                    <Grid>
+                        <TextBlock HorizontalAlignment="Left" Margin="24,11,0,0" TextWrapping="Wrap" Text="Old Password :" VerticalAlignment="Top"/>
+                        <TextBox Name="OldUserPassWord" HorizontalAlignment="Left" Height="23" Margin="117,7,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                        <TextBlock HorizontalAlignment="Left" Margin="23,37,0,0" TextWrapping="Wrap" Text="New Password :" VerticalAlignment="Top"/>
+                        <TextBox Name="NewUserPassword" HorizontalAlignment="Left" Height="23" Margin="117,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                        <TextBlock HorizontalAlignment="Left" Margin="12,67,0,0" TextWrapping="Wrap" Text="Retype Password :" VerticalAlignment="Top"/>
+                        <TextBox Name="RetypeUserPassword" HorizontalAlignment="Left" Height="23" Margin="117,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                        <Button Name="ChangeUserPassword" Content="Change" HorizontalAlignment="Left" Margin="117,97,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="ChangeUserPassword_Click">
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+                                    <Setter Property="IsEnabled" Value="False" />
+                                    <Style.Triggers>
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding ElementName=OldUserPassWord, Path=Text, Converter={StaticResource NullofEmptyToBoolConverter}}" Value="False" />
+                                                <Condition Binding="{Binding ElementName=NewUserPassword, Path=Text, Converter={StaticResource NullofEmptyToBoolConverter}}" Value="False" />
+                                                <Condition Binding="{Binding ElementName=RetypeUserPassword, Path=Text, Converter={StaticResource NullofEmptyToBoolConverter}}" Value="False" />
+                                            </MultiDataTrigger.Conditions>
+                                            <Setter Property="IsEnabled" Value="True"></Setter>
+                                        </MultiDataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </Grid>
+                </GroupBox>
+            </Grid>
+        </GroupBox>
+        <Button Name="CloseButton" Content="Close" HorizontalAlignment="Left" Margin="222,592,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="CloseButton_Click"/>
+    </Grid>
+</Window>

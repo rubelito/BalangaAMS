@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6EE53F4A-C8D5-43F3-89FF-3367A7440FA7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BalangaAMS.ApplicationLayer</RootNamespace>
+    <AssemblyName>BalangaAMS.Application</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ClosedXML">
+      <HintPath>..\packages\ClosedXML.0.69.1\lib\net40-client\ClosedXML.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml">
+      <HintPath>..\packages\DocumentFormat.OpenXml.1.0\lib\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="LinqToExcel">
+      <HintPath>..\packages\LinqToExcel_x64.1.7.1\lib\LinqToExcel.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\LinqToExcel_x64.1.7.1\lib\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion">
+      <HintPath>..\packages\LinqToExcel_x64.1.7.1\lib\Remotion.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Data.Linq">
+      <HintPath>..\packages\LinqToExcel_x64.1.7.1\lib\Remotion.Data.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Interfaces">
+      <HintPath>..\packages\LinqToExcel_x64.1.7.1\lib\Remotion.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.Reporting, Version=7.1.13.612, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DTO\AttendanceDayInfo.cs" />
+    <Compile Include="DTO\AttendanceInfoDTO.cs" />
+    <Compile Include="DTO\GatheringAttendanceInfo.cs" />
+    <Compile Include="ExportData\BrethrenExcelExporter.cs" />
+    <Compile Include="ExportData\DailyAttendanceInfoExporter.cs" />
+    <Compile Include="ExportData\FinalAttendanceReport.cs" />
+    <Compile Include="ExportData\FinalMonthlyAttendanceReportExporter.cs" />
+    <Compile Include="ExportData\MonthlyAttendanceGroupInfo.cs" />
+    <Compile Include="ExportData\MonthlyAtttendanceReportExporter.cs" />
+    <Compile Include="ExportData\WeeklyAttendanceGroupInfo.cs" />
+    <Compile Include="ExportData\WeeklyAttendanceReportExporter.cs" />
+    <Compile Include="HelperClass\FileNameChecker.cs" />
+    <Compile Include="HelperClass\GatheringsDateRangeGetter.cs" />
+    <Compile Include="HelperClass\ReportTableConverter.cs" />
+    <Compile Include="ImportExcelData\BrethrenImporter.cs" />
+    <Compile Include="ImportExcelData\ImportbrethrentoDB.cs" />
+    <Compile Include="Interfaces\ExportData\IExportBrethren.cs" />
+    <Compile Include="Interfaces\ExportData\IExportDailyAttendanceInfo.cs" />
+    <Compile Include="Interfaces\ExportData\IExportMonthlyAttendanceReport.cs" />
+    <Compile Include="Interfaces\ExportData\IExportWeeklyAttendanceReport.cs" />
+    <Compile Include="Interfaces\IAttendanceRetriever.cs" />
+    <Compile Include="Interfaces\IAttendeesRetriever.cs" />
+    <Compile Include="Interfaces\ImportExcelData\IImportbrethren.cs" />
+    <Compile Include="Interfaces\ImportExcelData\IImporttoDb.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Report\BirthdayCelebrantsReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\BirthdayCelebrantsReport.Designer.cs">
+      <DependentUpon>BirthdayCelebrantsReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\BrethrenData.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\BrethrenData.Designer.cs">
+      <DependentUpon>BrethrenData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\IndividualMonthyAttendanceReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\IndividualMonthyAttendanceReport.Designer.cs">
+      <DependentUpon>IndividualMonthyAttendanceReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\GroupReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\GroupReport.Designer.cs">
+      <DependentUpon>GroupReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\MonthyAttendanceReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\MonthyAttendanceReport.Designer.cs">
+      <DependentUpon>MonthyAttendanceReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\ReportModule\BrethrenInfo.cs" />
+    <Compile Include="Report\ReportModule\IMonthlyReportSummaryGetter.cs" />
+    <Compile Include="Report\ReportModule\IndividualReportSummary.cs" />
+    <Compile Include="Report\ReportModule\MonthlyReportGenerator.cs" />
+    <Compile Include="Report\ReportModule\MonthlyReportSummaryGetter.cs" />
+    <Compile Include="Report\ReportModule\MontlyReportSummary.cs" />
+    <Compile Include="Report\ReportModule\ReportAuthorization.cs" />
+    <Compile Include="Report\ReportModule\WeeklyReportGenerator.cs" />
+    <Compile Include="Report\ReportModule\WeeklyReportSummary.cs" />
+    <Compile Include="Report\WeeklyAttendanceReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\WeeklyAttendanceReport.Designer.cs">
+      <DependentUpon>WeeklyAttendanceReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Service\AttendanceLogRetriever.cs" />
+    <Compile Include="Service\AttendanceRetriever.cs" />
+    <Compile Include="Service\AttendeesRetriever.cs" />
+    <Compile Include="Service\BrethrenManager.cs" />
+    <Compile Include="Service\CommitteeManager.cs" />
+    <Compile Include="Service\GatheringSessionManager\GatheringSessionManager.cs" />
+    <Compile Include="Service\GatheringSessionManager\GatheringSessionRetriever.cs" />
+    <Compile Include="Service\GroupManager.cs" />
+    <Compile Include="Service\ImageService.cs" />
+    <Compile Include="Service\LateIdentifier.cs" />
+    <Compile Include="Service\LoggingAttendance\BrethrenAttendancelogger.cs" />
+    <Compile Include="Service\LoggingAttendance\LogAuthenticaterByChurchId.cs" />
+    <Compile Include="Service\ScheduleManager.cs" />
+    <Compile Include="Service\StatusIdentifier.cs" />
+    <Compile Include="Settings\ISettings.cs" />
+    <Compile Include="Settings\SettingsManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BalangaAMS.Core\BalangaAMS.Core.csproj">
+      <Project>{ee8b5770-6b69-44e2-af79-b6b75e2b0725}</Project>
+      <Name>BalangaAMS.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BalangaAMS.DataLayer\BalangaAMS.DataLayer.csproj">
+      <Project>{99a420fd-7621-4e55-81bf-83e682e81467}</Project>
+      <Name>BalangaAMS.DataLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Report\BirthdayCelebrantsReport.resx">
+      <DependentUpon>BirthdayCelebrantsReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\BrethrenData.resx">
+      <DependentUpon>BrethrenData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\IndividualMonthyAttendanceReport.resx">
+      <DependentUpon>IndividualMonthyAttendanceReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\GroupReport.resx">
+      <DependentUpon>GroupReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\MonthyAttendanceReport.resx">
+      <DependentUpon>MonthyAttendanceReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\WeeklyAttendanceReport.resx">
+      <DependentUpon>WeeklyAttendanceReport.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

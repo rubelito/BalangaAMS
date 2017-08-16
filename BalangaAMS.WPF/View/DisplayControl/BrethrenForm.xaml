@@ -1,0 +1,119 @@
+﻿<UserControl x:Class="BalangaAMS.WPF.View.DisplayControl.BrethrenForm"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:domainEnum="clr-namespace:BalangaAMS.Core.Domain.Enum;assembly=BalangaAMS.Core"
+             xmlns:helperClass="clr-namespace:BalangaAMS.WPF.View.HelperClass"
+             xmlns:converters="clr-namespace:BalangaAMS.WPF.View.Converters"
+             mc:Ignorable="d" d:DesignWidth="300" Height="380">
+    <UserControl.Resources>
+
+            <ObjectDataProvider x:Key="LocalstatusProvider" MethodName="GetValues" ObjectType="{x:Type domainEnum:LocalStatus}">
+                <ObjectDataProvider.MethodParameters>
+                    <x:Type TypeName="domainEnum:LocalStatus" />
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>
+            <ObjectDataProvider x:Key="GenderProvider" MethodName="GetValues" ObjectType="{x:Type domainEnum:Gender}">
+                <ObjectDataProvider.MethodParameters>
+                    <x:Type TypeName="domainEnum:Gender" />
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>
+            <ObjectDataProvider x:Key="CivilstatusProvider" MethodName="GetValues" ObjectType="{x:Type domainEnum:CivilStatus}">
+                <ObjectDataProvider.MethodParameters>
+                    <x:Type TypeName="domainEnum:CivilStatus" />
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>
+
+        <converters:NullToDateConverter x:Key="NullToDateConverter" />
+        <converters:DateToStringConverter x:Key="DateToStringConverter" />
+
+    </UserControl.Resources>
+    <Grid Margin="5,-10,-645,-10">
+        <GroupBox Header="Required Information" HorizontalAlignment="Left" Margin="25,10,0,0" VerticalAlignment="Top" Height="110" Width="330">
+            <Grid>
+                <!--ChurchID-->
+                <TextBlock Text="Church Id :" HorizontalAlignment="Left" Margin="40,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                <TextBox Text="{Binding Path=ChurchId}" HorizontalAlignment="Left" Height="23" Margin="111,6,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="150"/>
+                <!--Name-->
+                <TextBlock Text="Name :" HorizontalAlignment="Left" Margin="59,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                <TextBox Text="{Binding Path=Name}"  HorizontalAlignment="Left" Height="23" Margin="111,36,0,0" TextWrapping="NoWrap"  VerticalAlignment="Top" Width="172"/>
+                <!--Date of Baptism-->
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Date of Baptism :" VerticalAlignment="Top" Margin="7,65,0,0"/>
+                <DatePicker SelectedDate="{Binding Path=BrethrenFull.DateofBaptism}" HorizontalAlignment="Left" Margin="110,61,0,0" VerticalAlignment="Top" Width="120"/>
+                <!--<Button Name="DateofBaptism" Background="Aqua" HorizontalAlignment="Left" IsEnabled="{DynamicResource EnabledInputControl}"
+                           Margin="109,64,0,0" 
+                   Content="{Binding Path=BrethrenFull.DateofBaptism, Mode=OneWay, Converter={StaticResource DateToStringConverter}}" VerticalAlignment="Top" Width="120" Height="20" Click="DateofBaptism_Click">
+                    <Button.ContextMenu>
+                        <ContextMenu>
+                            <controls:DateSelector MinimumYear="1910" MaximumYear="{Binding Source={x:Static system:DateTime.Now}, Path=Year}"
+                               SelectedDate="{Binding Path=BrethrenFull.DateofBaptism, Mode=TwoWay, Converter={StaticResource NullToDateConverter}}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="210" Height="30"/>
+                        </ContextMenu>
+                    </Button.ContextMenu>
+                </Button>-->
+            </Grid>
+        </GroupBox>
+        <!--Date of Birth-->
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Date of Birth :" VerticalAlignment="Top" Margin="57,127,0,0"/>
+        <DatePicker SelectedDate="{Binding Path=BrethrenFull.DateofBirth, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="140,123,0,0" Width="120"/>
+        <!--<Button Name="DateofBirth" Background="Aqua" HorizontalAlignment="Left" IsEnabled="{DynamicResource EnabledInputControl}"
+                   Margin="140,125,0,0" Content="{Binding Path=BrethrenFull.DateofBirth, Mode=OneWay, Converter={StaticResource DateToStringConverter}}" VerticalAlignment="Top" Width="120" Height="20" Click="DateofBirth_Click">
+            <Button.ContextMenu>
+                <ContextMenu>
+                    <controls:DateSelector MinimumYear="1910" MaximumYear="{Binding Source={x:Static system:DateTime.Now}, Path=Year}"
+                               SelectedDate="{Binding Path=BrethrenFull.DateofBirth, Mode=TwoWay, Converter={StaticResource NullToDateConverter}}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="210" Height="30"/>
+                </ContextMenu>
+            </Button.ContextMenu>
+        </Butto>-->
+        <!--Local Attendance-->
+            <TextBlock  Text="Local Attendance :" HorizontalAlignment="Left" Margin="32,156,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="-0.002,1.258"/>
+            <ComboBox ItemsSource="{Binding Source={StaticResource LocalstatusProvider}}" SelectedValue="{Binding Path=LocalStatus}" HorizontalAlignment="Left" Height="23" Margin="141,152,0,0" VerticalAlignment="Top" Width="140"/>            
+            <!--NickName-->
+            <Label Content="NickName :" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="65,182,0,0"/>
+        <TextBox Text="{Binding Path=BrethrenFull.NickName}" HorizontalAlignment="Left" Height="23" TextWrapping="NoWrap" VerticalAlignment="Top" Width="150" Margin="141,180,0,0"/>
+            <!--Baptizer-->
+            <TextBlock HorizontalAlignment="Left"  TextWrapping="Wrap" Text="Baptizer :" VerticalAlignment="Top" Margin="77,210,0,0"/>
+        <TextBox Text="{Binding Path=BrethrenFull.Baptizer}" HorizontalAlignment="Left" Height="23" TextWrapping="NoWrap" VerticalAlignment="Top" Width="150" Margin="141,210,0,0"/>
+            <!--Place of baptism-->
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Place of Baptism :"  VerticalAlignment="Top" Margin="36,245,0,0"/>
+        <TextBox Text="{Binding Path=BrethrenFull.PlaceofBaptism}" HorizontalAlignment="Left" Height="23" TextWrapping="NoWrap" VerticalAlignment="Top" Width="150" Margin="141,241,0,0"/>
+            <!--Contact No-->
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Contact no. :" VerticalAlignment="Top" Margin="63,269,0,0"/>
+        <TextBox Text="{Binding Path=BrethrenFull.Contactno}" HorizontalAlignment="Left" Height="23" TextWrapping="NoWrap" VerticalAlignment="Top" Width="150" Margin="140,269,0,0"/>
+            <!--Language-->
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Language :" VerticalAlignment="Top" Margin="72,299,0,0"/>
+        <TextBox Text="{Binding Path=BrethrenFull.Language}" HorizontalAlignment="Left" Height="23" TextWrapping="NoWrap" VerticalAlignment="Top" Width="150" Margin="140,299,0,0"/>
+            <!--Street no-->
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Street no. :" VerticalAlignment="Top" Margin="399,42,0,0"/>
+        <TextBox Text="{Binding Path=BrethrenFull.StreetNumber}" HorizontalAlignment="Left" Height="23" TextWrapping="NoWrap" VerticalAlignment="Top" Width="161" Margin="468,38,0,0"/>
+            <!--Street :-->
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Street :" VerticalAlignment="Top" Margin="419,72,0,0"/>
+        <TextBox Text="{Binding Path=BrethrenFull.Street}" HorizontalAlignment="Left" Height="23" TextWrapping="NoWrap" VerticalAlignment="Top" Width="161" Margin="467,65,0,0"/>
+            <!--Barangay-->
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Barangay :" VerticalAlignment="Top" Margin="399,100,0,0"/>
+        <TextBox Text="{Binding Path=BrethrenFull.Barangay}" HorizontalAlignment="Left" Height="23" TextWrapping="NoWrap" VerticalAlignment="Top" Width="161" Margin="468,93,0,0"/>
+            <!--Town-->
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Town :" VerticalAlignment="Top" Margin="421,128,0,0"/>
+        <TextBox Text="{Binding Path=BrethrenFull.Town}" HorizontalAlignment="Left" Height="23" TextWrapping="NoWrap" VerticalAlignment="Top" Width="161" Margin="468,121,0,0"/>
+            <!--Province-->
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Province :" VerticalAlignment="Top" Margin="405,152,0,0"/>
+        <TextBox Text="{Binding Path=BrethrenFull.Province}" HorizontalAlignment="Left" Height="23" TextWrapping="NoWrap" VerticalAlignment="Top" Width="161" Margin="468,148,0,0"/>
+            <!--Gender-->
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Gender :" VerticalAlignment="Top" Margin="411,186,0,0"/>
+        <ComboBox ItemsSource="{Binding Source={StaticResource GenderProvider}}" SelectedValue="{Binding Path=BrethrenFull.Gender}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="129" Margin="468,176,0,0"/>
+            <!--Civil Status-->
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Civil Status :" VerticalAlignment="Top" Margin="392,218,0,0"/>
+        <ComboBox ItemsSource="{Binding Source={StaticResource CivilstatusProvider}}" SelectedValue="{Binding Path=BrethrenFull.CivilStatus}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="129" Margin="468,208,0,0"/>
+            <!--Job-->
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Job :" VerticalAlignment="Top" Margin="430,241,0,0"/>
+        <TextBox Text="{Binding Path=BrethrenFull.Job}" HorizontalAlignment="Left" Height="23" TextWrapping="NoWrap" VerticalAlignment="Top" Width="161" Margin="468,241,0,0"/>
+            <!--Skills-->
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Skills :" VerticalAlignment="Top" Margin="423,278,0,0"/>
+        <TextBox Text="{Binding Path=BrethrenFull.Skills}" HorizontalAlignment="Left" Height="23" TextWrapping="NoWrap" VerticalAlignment="Top" Width="161" Margin="469,271,0,0"/>
+            <!--Educational Attainment-->
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Educational Attainment :" VerticalAlignment="Top" Margin="329,305,0,0"/>
+            <TextBox Text="{Binding Path=BrethrenFull.EducationalAttainment}" HorizontalAlignment="Left" Height="23" TextWrapping="NoWrap" VerticalAlignment="Top" Width="161" Margin="469,299,0,0"/>
+        <TextBlock Text="Group :" HorizontalAlignment="Left" Margin="412,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock Name="GroupBlock" Text="{Binding Path=Group.GroupName}" HorizontalAlignment="Left" Margin="470,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+    </Grid>
+</UserControl>
