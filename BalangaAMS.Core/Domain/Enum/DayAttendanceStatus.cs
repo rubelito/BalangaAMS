@@ -9,6 +9,7 @@ namespace BalangaAMS.Core.Domain.Enum
         Absent,
         Active,
         Inactive,
-        NA
+        NA,
+        OtherLocal
     }
 }

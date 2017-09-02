@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using BalangaAMS.Core.Interfaces;
 
 namespace BalangaAMS.Core.Domain
@@ -8,8 +9,9 @@ namespace BalangaAMS.Core.Domain
         public long Id { get; set; }
         [Required]
         public string ChurchId { get; set; }
+        public DateTime DateTime { get; set; }
+        public bool IsLate { get; set; }
         [Required]
         public virtual GatheringSession GatheringSession { get; set; }
-        //Just added a comment
     }
 }

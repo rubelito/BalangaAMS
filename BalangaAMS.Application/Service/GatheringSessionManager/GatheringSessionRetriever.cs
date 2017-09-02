@@ -164,6 +164,11 @@ namespace BalangaAMS.ApplicationLayer.Service.GatheringSessionManager
             return session.AttendanceLogs.Any();
         }
 
+        public bool HasOtherLocalAttendees(long sessionId){
+            var session = GetGatheringById(sessionId);
+            return session.OtherLocalLogs.Any();
+        }
+
         public bool IsAttendedThisGathering(long gatheringId, long brethrenId){
             var session = GetGatheringById(gatheringId);
             if (session != null){

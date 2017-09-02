@@ -10,6 +10,7 @@ namespace BalangaAMS.ApplicationLayer.DTO
         }
 
         public GatheringSession Gathering { get; set; }
-        public List<BrethrenBasic> Attendees { get; set; } 
+        public List<BrethrenBasic> Attendees { get; set; }
+        public List<string> OtherLocalChurchIds { get; set; } 
     }
 }

@@ -51,6 +51,7 @@
     <Compile Include="Domain\BrethrenBasic.cs" />
     <Compile Include="Domain\BrethrenFingerPrint.cs" />
     <Compile Include="Domain\BrethrenFull.cs" />
+    <Compile Include="Domain\ChurchId.cs" />
     <Compile Include="Domain\Committee.cs" />
     <Compile Include="Domain\Enum\AttendanceStatus.cs" />
     <Compile Include="Domain\Enum\CivilStatus.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="Interfaces\IAttendanceLogger.cs" />
     <Compile Include="Interfaces\IAttendanceLogRetriever.cs" />
     <Compile Include="Interfaces\IBrethrenManager.cs" />
+    <Compile Include="Interfaces\IChurchIdManager.cs" />
     <Compile Include="Interfaces\ICommitteeManager.cs" />
     <Compile Include="Interfaces\IDatabaseType.cs" />
     <Compile Include="Interfaces\IEntity.cs" />
@@ -84,13 +86,16 @@
     <Compile Include="Interfaces\ITempIdManager.cs" />
     <Compile Include="Interfaces\IUnitofWork.cs" />
     <Compile Include="Interfaces\IWeeklyReport.cs" />
+    <Compile Include="Interfaces\IOtherLocalManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\IAttendanceLogRepository.cs" />
     <Compile Include="Repository\IBrethrenRepository.cs" />
     <Compile Include="Repository\IChurchGatheringRepository.cs" />
+    <Compile Include="Repository\IChurchIdRepository.cs" />
     <Compile Include="Repository\ICommitteeRepository.cs" />
     <Compile Include="Repository\IGatheringScheduleRepository.cs" />
     <Compile Include="Repository\IGroupRepository.cs" />
+    <Compile Include="Repository\IOtherLocalLogRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Interfaces\App.config" />

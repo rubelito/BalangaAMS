@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -34,7 +35,10 @@ namespace BalangaAMS.WPF.View
         private readonly IImageService _imageService;
         private readonly IAttendanceLogger _attendanceLogger;
         private readonly IAttendanceRetriever _attendanceRetriever;
+        private readonly IChurchIdManager _churchIdManager;
+        private readonly IOtherLocalManager _otherLocalManager;
         private readonly List<BrethrenBasic> _brethrenList;
+        private readonly List<ChurchId> _churchIds; 
         private readonly List<BrethrenBasic> _brethrenWithFingerPrint;
         private Capture _capturer;
         private Verification _verificator;
@@ -42,18 +46,25 @@ namespace BalangaAMS.WPF.View
         private readonly Timer _timer;
         private bool _isLate;
         private int _attendeesCount;
+        private int _otherLocalCount;
 
         public AttendanceLogin(List<GatheringSession> sessions){
             _sessions = sessions;
             _imageService = UnityBootstrapper.Container.Resolve<IImageService>();
             var brethrenManager = UnityBootstrapper.Container.Resolve<IBrethrenManager>();
+            
             _attendanceLogger = UnityBootstrapper.Container.Resolve<IAttendanceLogger>();
             _attendanceRetriever = UnityBootstrapper.Container.Resolve<IAttendanceRetriever>();
+            _churchIdManager = UnityBootstrapper.Container.Resolve<IChurchIdManager>();
+            _otherLocalManager = UnityBootstrapper.Container.Resolve<IOtherLocalManager>();
+            
             _timer = new Timer(1000);
             _timer.Elapsed += _timer_Elapsed;
 
             _brethrenList = brethrenManager.FindBrethren(b => b.LocalStatus == LocalStatus.Present_Here);
             _brethrenWithFingerPrint = _brethrenList.Where(b => b.FingerPrint != null).ToList();
+            _churchIds = _churchIdManager.GetAllChurchIds();
+
             LoadFingerPrintCache();
 
             InitializeComponent();
@@ -100,6 +111,7 @@ namespace BalangaAMS.WPF.View
 
         private void FillSearchBoxWithBrethren(){
             SearchGroupBox.DataContext = _brethrenList;
+            SearchOtherLocal.DataContext = _churchIds;
         }
 
         private void AutoCompleteBoxName_SelectionChanged(object sender, SelectionChangedEventArgs e){
@@ -117,6 +129,53 @@ namespace BalangaAMS.WPF.View
                 AutoCompleteBoxChurchId.SearchText = string.Empty;                
                 DisplayBrethrenInfo(brethren);
                 LogAttendanceToDatabase(brethren);
+            }
+        }
+
+        private void AutoCompleteBoxOtherLocal_OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter){
+                var id = AutoCompleteBoxOtherLocal.SelectedItem as ChurchId;
+                if (id != null){
+                    AutoCompleteBoxOtherLocal.SearchText = string.Empty;
+                    DisplayOtherLocal(id.Code);
+                    LogInOtherLocalAttendance(id.Code);                   
+                }
+                else{
+                    string newChurdId = AutoCompleteBoxOtherLocal.SearchText.ToUpper();
+                    if (!string.IsNullOrWhiteSpace(newChurdId)){
+                        AutoCompleteBoxOtherLocal.SearchText = string.Empty;
+                        CreateNewEntryOfOtherLocal(newChurdId);
+                        DisplayOtherLocal(newChurdId);
+                        LogInOtherLocalAttendance(newChurdId);
+                    }
+                }
+            }
+        }
+
+        private void AutoCompleteBoxOtherLocal_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var id = AutoCompleteBoxOtherLocal.SelectedItem as ChurchId;
+            if (id != null){
+                AutoCompleteBoxOtherLocal.SearchText = string.Empty;
+                DisplayOtherLocal(id.Code);
+                LogInOtherLocalAttendance(id.Code);
+            }
+        }
+
+        private void CreateNewEntryOfOtherLocal(string churchId){
+            var newId = new ChurchId();
+            newId.Code = churchId;
+            _churchIdManager.AddChurchId(newId);
+        }
+
+        private void LogInOtherLocalAttendance(string churchId){
+            foreach (var s in _sessions){
+                var l = new OtherLocalLog();
+                l.ChurchId = churchId;
+                l.IsLate = _isLate;
+                l.DateTime = DateTime.Now;
+                _otherLocalManager.LogAttendance(l, s.Id);
             }
         }
 
@@ -153,7 +212,40 @@ namespace BalangaAMS.WPF.View
                 else
                     DisplayMessage("Welcome: " + brethren.Name, Brushes.DarkGreen);
                 _attendeesCount++;
+
                 LoginCountText.Text = Convert.ToString(_attendeesCount);
+            }));
+        }
+
+        private void DisplayOtherLocal(string churchId){
+            var bitmapImage = ImageToBitmap.ConvertToBitmapImage(_imageService.GetDefaultPicture());
+            bitmapImage.Freeze();
+            Dispatcher.Invoke(new Function(delegate{
+                ChurchIdBlock.Text = churchId;
+                NameBlock.Text = string.Empty;
+                ImageControl.Source = bitmapImage;
+
+                bool isAlreadyLoggedIn = false;
+
+                foreach (var s in _sessions){
+                    if (_otherLocalManager.IsAlreadyLogin(churchId, s.Id)){
+                        isAlreadyLoggedIn = true;
+                        break;
+                    }
+                }
+
+                if (isAlreadyLoggedIn)
+                {
+                    DisplayMessage(churchId + " is already Login", Brushes.IndianRed);
+                    return;
+                }
+                if (_isLate)
+                    DisplayMessage("Welcome other local: " + churchId + " - Late", Brushes.DarkGoldenrod);
+                else
+                    DisplayMessage("Welcome other local: " + churchId, Brushes.DarkGreen);
+
+                _otherLocalCount++;
+                OtherLocalCountText.Text = Convert.ToString(_otherLocalCount);
             }));
         }
 

@@ -10,6 +10,7 @@
         <Button Name="Login" Content="Log-in" HorizontalAlignment="Left" Margin="95,87,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="Login_Click"/>
         <Button Name="Exit" Content="Exit" HorizontalAlignment="Left" Margin="183,87,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="Exit_Click"/>
         <TextBlock HorizontalAlignment="Left" Margin="14,7,0,0" TextWrapping="Wrap" FontSize="20" Foreground="DarkBlue" Text="User Login" VerticalAlignment="Top"/>
-        <PasswordBox Name="PasswordBox" HorizontalAlignment="Left" Margin="135,50,0,0" VerticalAlignment="Top" Width="115" PasswordChar="*"/>
+        <PasswordBox Name="PasswordBox" HorizontalAlignment="Left" Margin="135,50,0,0" 
+                     VerticalAlignment="Top" Width="115" PasswordChar="*" KeyDown="PasswordBox_OnKeyDown"/>
     </Grid>
 </Window>

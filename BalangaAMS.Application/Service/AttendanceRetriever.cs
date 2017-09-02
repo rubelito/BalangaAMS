@@ -14,14 +14,17 @@ namespace BalangaAMS.ApplicationLayer.Service
         private readonly IChurchGatheringRetriever _sessionRetriever;
         private readonly IBrethrenManager _brethrenManager;
         private readonly IAttendanceLogRetriever _logRetriever;
+        private readonly IOtherLocalManager _otherLocalManager;
 
         public int DaysToConsiderNewlyBaptised { get; set; }
 
         public AttendanceRetriever(IChurchGatheringRetriever sessionRetriever,
-            IBrethrenManager brethrenManager, IAttendanceLogRetriever logRetriever){
+            IBrethrenManager brethrenManager, IAttendanceLogRetriever logRetriever
+            , IOtherLocalManager otherLocalManager){
             _sessionRetriever = sessionRetriever;
             _brethrenManager = brethrenManager;
             _logRetriever = logRetriever;
+            _otherLocalManager = otherLocalManager;
         }
 
         public List<BrethrenBasic> GetBrethrenWhoAttendedThisGathering(GatheringSession session){
@@ -164,5 +167,50 @@ namespace BalangaAMS.ApplicationLayer.Service
             return log != null;
         }
 
+        public List<string> GetOtherLocalWhoAttendedThisGathering(GatheringSession session){
+            var otherLogs = _otherLocalManager.GetLogsByChurchGathering(session);
+            List<string> churchIds = otherLogs.Select(o => o.ChurchId).ToList();
+            return churchIds.Distinct().ToList();
+        }
+
+        public List<AttendanceInfoDTO> GetAttendanceInfoOfOtherLocalWhoAttendedThisGathering(GatheringSession session)
+        {
+            var attendanceInfoList = new List<AttendanceInfoDTO>();
+            var otherLogs = _otherLocalManager.GetLogsByChurchGathering(session);
+            otherLogs = (otherLogs.GroupBy(o => o.ChurchId)
+                                           .Select(o => o.FirstOrDefault())).ToList();//Remove duplicate record (Get distinct).
+            foreach (var log in otherLogs)
+            {
+                var attendanceDTO = CreateOtherLocalInfoDto(log);
+                attendanceInfoList.Add(attendanceDTO);
+            }
+            return attendanceInfoList;
+        }
+
+        public List<AttendanceInfoDTO> GetAttendanceInfoOfOtherLocalWhoAttendedThisGatheringLate(GatheringSession session)
+        {
+            var attendanceInfoList = GetAttendanceInfoOfOtherLocalWhoAttendedThisGathering(session);
+            return
+                attendanceInfoList.Where(a => a.AttendaceDayInfo.DayAttendanceStatus == DayAttendanceStatus.Late)
+                    .ToList();
+        }
+
+        private AttendanceInfoDTO CreateOtherLocalInfoDto(OtherLocalLog log){
+            var dayInfo = new AttendanceDayInfo(){
+                DateAndTime = log.DateTime,
+                IsAttended = true,
+                DayAttendanceStatus = log.IsLate ? DayAttendanceStatus.Late : DayAttendanceStatus.Present
+            };
+
+            var b = new BrethrenBasic{ChurchId = log.ChurchId};
+
+            var attendanceDto = new AttendanceInfoDTO(){
+                AttendaceDayInfo = dayInfo,
+                Brethren = b,
+                GroupName = "Other Local"
+            };
+
+            return attendanceDto;
+        }
     }
 }

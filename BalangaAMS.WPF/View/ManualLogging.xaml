@@ -5,7 +5,7 @@
         xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
         xmlns:dto="clr-namespace:BalangaAMS.WPF.View.DTO"
         Icon="SystemImage\manuallogging.png" ShowInTaskbar="False"
-        Title="Manual Logging" Height="571" Width="369"
+        Title="Manual Logging" Height="698" Width="565"
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <ResourceDictionary>
@@ -33,14 +33,20 @@
                     <TextBlock Text="{Binding Name}" Style="{StaticResource AutoCompleteStyle}" Margin="10 0 0 0" />
                 </StackPanel>
             </DataTemplate>
-            
+
+            <DataTemplate x:Key="OtherLocalAutoComplete" DataType="{x:Type domain:ChurchId}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding Code}" Style="{StaticResource AutoCompleteStyle}" Margin="10 0 0 0" />
+                </StackPanel>
+            </DataTemplate>
+
         </ResourceDictionary>    
     </Window.Resources>
-    <Grid Background="LightGray">
-        <GroupBox Name="SearchGroupBox" Header="Search Brethren" HorizontalAlignment="Left" Margin="15,137,0,0" VerticalAlignment="Top" Height="90" Width="340">
+    <Grid Background="LightGray" Margin="0,0,-8,0">
+        <GroupBox Name="SearchGroupBox" Header="Search Brethren" HorizontalAlignment="Left" Margin="15,137,0,0" VerticalAlignment="Top" Height="89" Width="340">
             <Grid>
-                <TextBlock Text="Church ID:" HorizontalAlignment="Left" Margin="6,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.182,-1.188"/>
-                <TextBlock Text="Name:" HorizontalAlignment="Left" Margin="27,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                <TextBlock Text="Church ID:" HorizontalAlignment="Left" Margin="10,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.182,-1.188"/>
+                <TextBlock Text="Name:" HorizontalAlignment="Left" Margin="31,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
 
                 <telerik:RadAutoCompleteBox
                     WatermarkContent="Enter Name..."
@@ -50,7 +56,7 @@
                     HorizontalAlignment="Left"
                     ItemsSource="{Binding}"
                     AutoCompleteMode="Suggest"
-                    Margin="75,6,0,0" 
+                    Margin="82,6,0,0" 
                     VerticalAlignment="Top" 
                     Width="200"
                     DropDownWidth="Auto"
@@ -66,7 +72,7 @@
                     HorizontalAlignment="Left"
                     ItemsSource="{Binding}"
                     AutoCompleteMode="Suggest"
-                    Margin="75,41,0,0" 
+                    Margin="82,40,0,0" 
                     VerticalAlignment="Top" 
                     Width="200"
                     DropDownWidth="Auto"
@@ -75,11 +81,45 @@
                     SelectionChanged="AutoCompleteBoxChurchId_SelectionChanged"/>
             </Grid>
         </GroupBox>
-        
+
+        <GroupBox Name="SearchOtherGroupBox" Header="Other Local" HorizontalAlignment="Left" Margin="16,226,0,0" VerticalAlignment="Top" Height="64" Width="340">
+            <Grid>
+
+                <TextBlock Text="Church ID:" HorizontalAlignment="Left" Margin="10,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+
+                <telerik:RadAutoCompleteBox
+                    WatermarkContent="Enter Church ID..."
+                    TextSearchPath="Code"
+                    TextSearchMode="StartsWith"
+                    SelectionMode="Single"
+                    HorizontalAlignment="Left"
+                    ItemsSource="{Binding}"
+                    AutoCompleteMode="Suggest"
+                    Margin="82,10,0,0" 
+                    VerticalAlignment="Top" 
+                    Width="200"
+                    DropDownWidth="Auto"
+                    Name="AutoCompleteBoxOtherLocalChurchId"
+                    DropDownItemTemplate="{StaticResource OtherLocalAutoComplete}"
+                    SelectionChanged="AutoCompleteBoxOtherLocalChurchId_OnSelectionChanged"
+                    KeyDown="AutoCompleteBoxOtherLocalChurchId_OnKeyDown"/>
+
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Name="DatetimeGroupBox" Header="Time (Optional)" HorizontalAlignment="Left" Margin="360,137,0,0" VerticalAlignment="Top" Height="153" Width="195">
+            <Grid>
+                <RadioButton Content="No Time" Name="NoTimeRbtn" GroupName="Time" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Checked="NoTimeRbtn_OnChecked"/>
+                <RadioButton Content="Time" Name="WithTimeRbtn" GroupName="Time" HorizontalAlignment="Left" Margin="10,47,0,0" VerticalAlignment="Top" Checked="WithTimeRbtn_OnChecked"/>
+                <telerik:RadDateTimePicker Name="TimePicker" HorizontalAlignment="Left" Margin="30,76,0,0" VerticalAlignment="Top" Width="144"/>
+                
+            </Grid>
+        </GroupBox>
+
         <GroupBox Header="List of Brethren that you want to log to this Gathering" 
-                  Name="NotAttendedGroupBox" HorizontalAlignment="Left" Margin="15,230,0,0" VerticalAlignment="Top" Height="305" Width="340">           
+                  Name="NotAttendedGroupBox" HorizontalAlignment="Left" Margin="15,295,0,0" VerticalAlignment="Top" Height="305" Width="539">           
             <Grid>              
-                <ListView ItemsSource="{Binding}" Name="BrethrenListView" IsSynchronizedWithCurrentItem="True" HorizontalAlignment="Left" Height="240" Margin="4,9,0,0" VerticalAlignment="Top" Width="320">
+                <ListView ItemsSource="{Binding}" Name="BrethrenListView" IsSynchronizedWithCurrentItem="True" HorizontalAlignment="Left" Height="240" Margin="4,9,0,0" VerticalAlignment="Top" Width="513">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Is Late?" Width="47">
@@ -91,6 +131,7 @@
                             </GridViewColumn>
                             <GridViewColumn Header="Church Id" DisplayMemberBinding="{Binding Path=Brethren.ChurchId}" Width="90"/>
                             <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Path=Brethren.Name}" Width="175"/>
+                            <GridViewColumn Header="LogTime" DisplayMemberBinding="{Binding Path=DateTimeString}" Width="175"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
@@ -119,7 +160,7 @@
             </Grid>
         </GroupBox>
         <GroupBox Name="GatheringBox" Header="Select Church Gatherings" HorizontalAlignment="Left" Margin="15,10,0,0"
-                  VerticalAlignment="Top" Height="125" Width="340">
+                  VerticalAlignment="Top" Height="125" Width="540">
             <Grid>
                 <Button Name="SelectGatheringButton" Content="Select Gathering" HorizontalAlignment="Left" 
                         Margin="9,13,0,0" VerticalAlignment="Top" Width="100" Height="23" Click="SelectGatheringButton_Click"/>
@@ -131,5 +172,6 @@
             </Grid>
             </GroupBox>
         
+
     </Grid>
 </Window>

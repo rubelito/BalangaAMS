@@ -149,6 +149,7 @@
     <Compile Include="Service\AttendanceRetriever.cs" />
     <Compile Include="Service\AttendeesRetriever.cs" />
     <Compile Include="Service\BrethrenManager.cs" />
+    <Compile Include="Service\ChurchIdManager.cs" />
     <Compile Include="Service\CommitteeManager.cs" />
     <Compile Include="Service\GatheringSessionManager\GatheringSessionManager.cs" />
     <Compile Include="Service\GatheringSessionManager\GatheringSessionRetriever.cs" />
@@ -157,6 +158,7 @@
     <Compile Include="Service\LateIdentifier.cs" />
     <Compile Include="Service\LoggingAttendance\BrethrenAttendancelogger.cs" />
     <Compile Include="Service\LoggingAttendance\LogAuthenticaterByChurchId.cs" />
+    <Compile Include="Service\OtherLocalLogManager.cs" />
     <Compile Include="Service\ScheduleManager.cs" />
     <Compile Include="Service\StatusIdentifier.cs" />
     <Compile Include="Settings\ISettings.cs" />

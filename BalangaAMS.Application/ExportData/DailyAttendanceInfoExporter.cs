@@ -6,6 +6,7 @@ using BalangaAMS.ApplicationLayer.DTO;
 using BalangaAMS.Core.Domain;
 using BalangaAMS.Core.Domain.Enum;
 using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Drawing.Charts;
 
 namespace BalangaAMS.ApplicationLayer.ExportData
 {
@@ -144,6 +145,10 @@ namespace BalangaAMS.ApplicationLayer.ExportData
                         cell.Value = " X ";
                         FillBackGroudColor(cell, dayInfo.DayAttendanceStatus);
                         break;
+                    case DayAttendanceStatus.OtherLocal:
+                        DisplayDate(cell, dayInfo);
+                        FillBackGroudColor(cell, dayInfo.DayAttendanceStatus);
+                        break;
                     case DayAttendanceStatus.NA:
                         cell.Value = "N/A";
                         break;
@@ -153,7 +158,7 @@ namespace BalangaAMS.ApplicationLayer.ExportData
 
         private void DisplayDate(IXLCell cell, AttendanceDayInfo dayInfo)
         {
-            if (IsDateHasHourAndMinute(dayInfo.DateAndTime)){
+            if (IsDateHasHour(dayInfo.DateAndTime)){
                 cell.Value = dayInfo.DateAndTimeStr;
                 cell.DataType = XLCellValues.DateTime;
                 cell.Style.DateFormat.Format = @"[$-409]m/d/yy (h:mm AM/PM);@";
@@ -164,9 +169,9 @@ namespace BalangaAMS.ApplicationLayer.ExportData
             }
         }
 
-        private bool IsDateHasHourAndMinute(DateTime date)
+        private bool IsDateHasHour(DateTime date)
         {
-            return date.Hour > 0 && date.Minute > 0;
+            return date.Hour > 0;
         }
 
         private void FillBackGroudColor(IXLCell cell, DayAttendanceStatus dayInfo)

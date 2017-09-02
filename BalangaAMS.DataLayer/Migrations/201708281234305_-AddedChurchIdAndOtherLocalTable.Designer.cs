@@ -5,13 +5,13 @@ namespace BalangaAMS.DataLayer.Migrations
     using System.Data.Entity.Migrations.Infrastructure;
     using System.Resources;
     
-    public sealed partial class AddOtherLocalLogTable : IMigrationMetadata
+    public sealed partial class AddedChurchIdAndOtherLocalTable : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddOtherLocalLogTable));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedChurchIdAndOtherLocalTable));
         
         string IMigrationMetadata.Id
         {
-            get { return "201708101537226_AddOtherLocalLogTable"; }
+            get { return "201708281234305_-AddedChurchIdAndOtherLocalTable"; }
         }
         
         string IMigrationMetadata.Source

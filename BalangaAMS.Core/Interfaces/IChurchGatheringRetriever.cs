@@ -25,6 +25,7 @@ namespace BalangaAMS.Core.Interfaces
         int CountBrethrenAttendancedInAMonth(long brethrenId, MonthofYear monthofYear, int year);
         int CountBrethrenAbsentInAMonth(long brethrenId, MonthofYear monthofYear, int year);
         bool HasAttendees(long sessionId);
+        bool HasOtherLocalAttendees(long sessionId);
         bool IsAttendedThisGathering(long gatheringId, long brethrenId);
     }
 }

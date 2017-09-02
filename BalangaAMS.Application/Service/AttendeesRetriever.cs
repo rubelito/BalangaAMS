@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using BalangaAMS.ApplicationLayer.DTO;
 using BalangaAMS.ApplicationLayer.Interfaces;
 using BalangaAMS.Core.Domain;
@@ -23,6 +19,7 @@ namespace BalangaAMS.ApplicationLayer.Service
                 var gaInfos = new GatheringAttendanceInfo();
                 gaInfos.Gathering = ga;
                 gaInfos.Attendees = _attendanceRetriever.GetBrethrenWhoAttendedThisGathering(ga);
+                gaInfos.OtherLocalChurchIds = _attendanceRetriever.GetOtherLocalWhoAttendedThisGathering(ga);
                 gAttendanceInfos.Add(gaInfos);
             }
 

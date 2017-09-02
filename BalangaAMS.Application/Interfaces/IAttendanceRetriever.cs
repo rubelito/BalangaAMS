@@ -14,5 +14,8 @@ namespace BalangaAMS.ApplicationLayer.Interfaces
         List<AttendanceInfoDTO> GetAttendanceInfoOfBrethrenWhoAttendedThisGatheringLate(GatheringSession session);
         List<AttendanceInfoDTO> GetAttendanceInfoOfBrethrenWhoIsAbsentInThisGathering(GatheringSession session);
         bool IsAlreadyLogin(long brethrenId, GatheringSession session);
+        List<string> GetOtherLocalWhoAttendedThisGathering(GatheringSession session);
+        List<AttendanceInfoDTO> GetAttendanceInfoOfOtherLocalWhoAttendedThisGathering(GatheringSession session);
+        List<AttendanceInfoDTO> GetAttendanceInfoOfOtherLocalWhoAttendedThisGatheringLate(GatheringSession session);
     }
 }

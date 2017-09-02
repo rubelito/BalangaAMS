@@ -59,6 +59,8 @@ namespace BalangaAMS.WPF
                 new InjectionProperty("DaysToConsiderNewlyBaptised",
                     Convert.ToInt32(ConfigurationManager.AppSettings["daysToConsiderNewlyBaptised"])));
             Container.RegisterType<IAttendeesRetriever, AttendeesRetriever>();
+            Container.RegisterType<IChurchIdManager, ChurchIdManager>();
+            Container.RegisterType<IOtherLocalManager, OtherLocalLogManager>();
         }
 
         private static void InitiateRepositoryClass(){
@@ -68,6 +70,9 @@ namespace BalangaAMS.WPF
             Container.RegisterType<IGroupRepository, GroupRepository>();
             Container.RegisterType<ICommitteeRepository, CommitteeRepository>();
             Container.RegisterType<IGatheringScheduleRepository, GatheringScheduleRepository>();
+            Container.RegisterType<IChurchIdRepository, ChurchIdRepository>();
+            Container.RegisterType<IOtherLocalLogRepository, OtherLocalLogRepository>();
+
         }
     }
 }

@@ -7,12 +7,14 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Forms;
 using BalangaAMS.ApplicationLayer.Interfaces;
 using BalangaAMS.Core.Domain;
 using BalangaAMS.Core.Interfaces;
 using BalangaAMS.WPF.View.DTO;
 using BalangaAMS.WPF.View.Schedule;
 using Microsoft.Practices.Unity;
+using MessageBox = System.Windows.MessageBox;
 
 namespace BalangaAMS.WPF.View
 {
@@ -23,6 +25,8 @@ namespace BalangaAMS.WPF.View
     {
         private readonly IAttendanceRetriever _attendanceRetriever;
         private readonly IAttendanceLogRetriever _attendanceLogRetriever;
+        private readonly IOtherLocalManager _otherLocalManager;
+ 
         private readonly ObservableCollection<BrethrenRemoveCheckDTO> _brethrenInfoList;
         private ICollectionView _brethrenInfoListView;
         private List<GatheringSession> _gatherings;
@@ -31,6 +35,7 @@ namespace BalangaAMS.WPF.View
             InitializeComponent();
             _attendanceRetriever = UnityBootstrapper.Container.Resolve<IAttendanceRetriever>();
             _attendanceLogRetriever = UnityBootstrapper.Container.Resolve<IAttendanceLogRetriever>();
+            _otherLocalManager = UnityBootstrapper.Container.Resolve<IOtherLocalManager>();
             _brethrenInfoList = new ObservableCollection<BrethrenRemoveCheckDTO>();
             
             _brethrenInfoListView = CollectionViewSource.GetDefaultView(_brethrenInfoList);
@@ -46,8 +51,12 @@ namespace BalangaAMS.WPF.View
                 _gatherings = selectGathering.GetSelectedGatherings();
                 SetGatheringBoxInfo(_gatherings);
                 var attendedBrethren = _attendanceRetriever.GetBrethrenWhoAttendedThisGathering(_gatherings[0]);
+
+                var otherLocals = _attendanceRetriever.GetOtherLocalWhoAttendedThisGathering(_gatherings[0]);
+
                 _brethrenInfoList.Clear();
                 AddBrethrenToListBox(attendedBrethren);
+                AddOtherLocalToListBox(otherLocals);
             }
         }
 
@@ -74,9 +83,19 @@ namespace BalangaAMS.WPF.View
                 GatheringDate.Text = gatherings[0].Date.ToString("MMM dd, yyyy");
             }
 
-        public void AddBrethrenToListBox(List<BrethrenBasic> brethrenList){
+        private void AddBrethrenToListBox(List<BrethrenBasic> brethrenList){
             foreach (var brethren in brethrenList){
-                _brethrenInfoList.Add(new BrethrenRemoveCheckDTO {Brethren = brethren});
+                _brethrenInfoList.Add(new BrethrenRemoveCheckDTO {Brethren = brethren, IsOtherLocal = false });
+            }
+        }
+
+        private void AddOtherLocalToListBox(List<string> otherLocals){
+            foreach (string o in otherLocals){
+                BrethrenBasic b = new BrethrenBasic();
+                b.ChurchId = o;
+                b.Name = "Other Local";
+
+                _brethrenInfoList.Add(new BrethrenRemoveCheckDTO {Brethren = b, IsOtherLocal = true });
             }
         }
 
@@ -86,6 +105,13 @@ namespace BalangaAMS.WPF.View
 
         private bool BrethrenFilter(object item){
             var dto = item as BrethrenRemoveCheckDTO;
+
+            if (dto.IsOtherLocal){
+                return dto != null &&
+                       !string.IsNullOrWhiteSpace(dto.Brethren.ChurchId) &&
+                       dto.Brethren.ChurchId.IndexOf(SearchName.Text, StringComparison.OrdinalIgnoreCase) >= 0;
+            }
+
             return dto != null &&
                    !string.IsNullOrWhiteSpace(dto.Brethren.Name) &&
                    dto.Brethren.Name.IndexOf(SearchName.Text, StringComparison.OrdinalIgnoreCase) >= 0;
@@ -111,7 +137,12 @@ namespace BalangaAMS.WPF.View
             private void RemoveAttendance(BrethrenRemoveCheckDTO brethrenInfo){
                 var brethren = brethrenInfo.Brethren;
                 foreach (var gathering in _gatherings){
-                    _attendanceLogRetriever.RemoveAttendanceLog(brethren.Id, gathering.Id);
+                    if (brethrenInfo.IsOtherLocal){
+                        _otherLocalManager.RemoveAttendanceLog(brethren.ChurchId, gathering.Id);
+                    }
+                    else{
+                        _attendanceLogRetriever.RemoveAttendanceLog(brethren.Id, gathering.Id);
+                    } 
                 }
             }
 

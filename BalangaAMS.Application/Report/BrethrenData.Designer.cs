@@ -177,7 +177,7 @@ namespace BalangaAMS.ApplicationLayer.Report
             this.Barangay});
             this.panel1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(0.1000000610947609D), Telerik.Reporting.Drawing.Unit.Inch(2.4000000953674316D));
             this.panel1.Name = "panel1";
-            this.panel1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(6.7999997138977051D), Telerik.Reporting.Drawing.Unit.Inch(1.4000781774520874D));
+            this.panel1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(6.8999996185302734D), Telerik.Reporting.Drawing.Unit.Inch(1.4000781774520874D));
             this.panel1.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
             this.panel1.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(0.5D);
             // 
@@ -302,7 +302,7 @@ namespace BalangaAMS.ApplicationLayer.Report
             // 
             this.Barangay.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(3.9000003337860107D), Telerik.Reporting.Drawing.Unit.Inch(0.1373027116060257D));
             this.Barangay.Name = "Barangay";
-            this.Barangay.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(2.1999614238739014D), Telerik.Reporting.Drawing.Unit.Inch(0.19999997317790985D));
+            this.Barangay.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(2.5D), Telerik.Reporting.Drawing.Unit.Inch(0.19999997317790985D));
             this.Barangay.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.Barangay.Value = "=Fields.BrethrenFull.Barangay";
             // 
@@ -338,7 +338,7 @@ namespace BalangaAMS.ApplicationLayer.Report
             this.Language});
             this.panel2.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(0.099999986588954926D), Telerik.Reporting.Drawing.Unit.Inch(4.1000003814697266D));
             this.panel2.Name = "panel2";
-            this.panel2.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(7.7000007629394531D), Telerik.Reporting.Drawing.Unit.Inch(1.6000000238418579D));
+            this.panel2.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(6.90000057220459D), Telerik.Reporting.Drawing.Unit.Inch(1.6000000238418579D));
             this.panel2.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
             this.panel2.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(0.5D);
             // 
@@ -454,21 +454,21 @@ namespace BalangaAMS.ApplicationLayer.Report
             // 
             this.Job.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(4.3000001907348633D), Telerik.Reporting.Drawing.Unit.Inch(0.7000001072883606D));
             this.Job.Name = "Job";
-            this.Job.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(2.40000057220459D), Telerik.Reporting.Drawing.Unit.Inch(0.19999980926513672D));
+            this.Job.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(2.5000002384185791D), Telerik.Reporting.Drawing.Unit.Inch(0.19999980926513672D));
             this.Job.Value = "=Fields.BrethrenFull.Job";
             // 
             // Baptizer
             // 
             this.Baptizer.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(4.3000001907348633D), Telerik.Reporting.Drawing.Unit.Inch(0.099999748170375824D));
             this.Baptizer.Name = "Baptizer";
-            this.Baptizer.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(2.40000057220459D), Telerik.Reporting.Drawing.Unit.Inch(0.20000012218952179D));
+            this.Baptizer.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(2.5000002384185791D), Telerik.Reporting.Drawing.Unit.Inch(0.20000012218952179D));
             this.Baptizer.Value = "=Fields.BrethrenFull.Baptizer";
             // 
             // Skills
             // 
             this.Skills.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(4.3000001907348633D), Telerik.Reporting.Drawing.Unit.Inch(0.99999934434890747D));
             this.Skills.Name = "Skills";
-            this.Skills.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(2.4000003337860107D), Telerik.Reporting.Drawing.Unit.Inch(0.16874980926513672D));
+            this.Skills.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(2.5D), Telerik.Reporting.Drawing.Unit.Inch(0.16874980926513672D));
             this.Skills.Value = "=Fields.BrethrenFull.Skills";
             // 
             // Gender
@@ -482,14 +482,14 @@ namespace BalangaAMS.ApplicationLayer.Report
             // 
             this.EducationalAttainment.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(4.3000001907348633D), Telerik.Reporting.Drawing.Unit.Inch(1.2999998331069946D));
             this.EducationalAttainment.Name = "EducationalAttainment";
-            this.EducationalAttainment.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(2.4000003337860107D), Telerik.Reporting.Drawing.Unit.Inch(0.20000012218952179D));
+            this.EducationalAttainment.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(2.5D), Telerik.Reporting.Drawing.Unit.Inch(0.20000012218952179D));
             this.EducationalAttainment.Value = "=Fields.BrethrenFull.EducationalAttainment";
             // 
             // Language
             // 
             this.Language.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(4.3000001907348633D), Telerik.Reporting.Drawing.Unit.Inch(0.39999961853027344D));
             this.Language.Name = "Language";
-            this.Language.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(2.3999998569488525D), Telerik.Reporting.Drawing.Unit.Inch(0.19999980926513672D));
+            this.Language.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(2.4999995231628418D), Telerik.Reporting.Drawing.Unit.Inch(0.19999980926513672D));
             this.Language.Value = "=Fields.BrethrenFull.Language";
             // 
             // textBox23
@@ -519,7 +519,7 @@ namespace BalangaAMS.ApplicationLayer.Report
             // 
             this.bretrenName.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(3.2000000476837158D), Telerik.Reporting.Drawing.Unit.Inch(0.50000017881393433D));
             this.bretrenName.Name = "bretrenName";
-            this.bretrenName.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(2.2999999523162842D), Telerik.Reporting.Drawing.Unit.Inch(0.19999997317790985D));
+            this.bretrenName.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(2.7000002861022949D), Telerik.Reporting.Drawing.Unit.Inch(0.19999997317790985D));
             this.bretrenName.Value = "=Fields.Name";
             // 
             // DateofBaptism
@@ -567,7 +567,7 @@ namespace BalangaAMS.ApplicationLayer.Report
             styleRule1.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.StyleSheet.AddRange(new Telerik.Reporting.Drawing.StyleRule[] {
             styleRule1});
-            this.Width = Telerik.Reporting.Drawing.Unit.Inch(7.8000006675720215D);
+            this.Width = Telerik.Reporting.Drawing.Unit.Inch(7.5D);
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
         }

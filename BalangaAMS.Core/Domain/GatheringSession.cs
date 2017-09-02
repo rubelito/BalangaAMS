@@ -8,6 +8,7 @@ namespace BalangaAMS.Core.Domain
     public class GatheringSession : IEntity
     {
         private List<AttendanceLog> _attendanceLogs;
+        private List<OtherLocalLog> _otherLocalLogs; 
 
         public GatheringSession()
         {
@@ -23,6 +24,11 @@ namespace BalangaAMS.Core.Domain
         {
             get { return _attendanceLogs; }
             set { _attendanceLogs = value; }
-        } 
+        }
+
+        public virtual List<OtherLocalLog> OtherLocalLogs {
+            get { return _otherLocalLogs; }
+            set { _otherLocalLogs = value; }
+        }
     }
 }

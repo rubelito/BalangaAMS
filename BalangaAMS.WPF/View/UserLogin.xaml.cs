@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 using BalangaAMS.ApplicationLayer.Settings;
 using BalangaAMS.WPF.View.EnumData;
 using Microsoft.Practices.Unity;
@@ -29,17 +30,29 @@ namespace BalangaAMS.WPF.View
         }
 
         private void Login_Click(object sender, RoutedEventArgs e){
-            if (IsUserIsAdmin()){
+            LogUser();
+        }
+
+        private void PasswordBox_OnKeyDown(object sender, KeyEventArgs e){
+            if (e.Key == Key.Enter){
+                LogUser();
+            }
+        }
+
+        private void LogUser(){
+            if (IsUserIsAdmin())
+            {
                 _userType = UserType.Admin;
                 _isExited = false;
                 Close();
             }
-            if (IsUserIsMember()){
+            if (IsUserIsMember())
+            {
                 _userType = UserType.Member;
                 _isExited = false;
                 Close();
             }
-                
+
             if (_userType == UserType.None)
                 MessageBox.Show("Password Is Wrong");
         }

@@ -6,10 +6,11 @@ namespace BalangaAMS.DataLayer.EntityFramework
 {
     internal class AMSDbContext: DbContext
     {
-        public AMSDbContext(){
+        //public AMSDbContext()
+        //{
 
 
-        }
+        //}
 
         public AMSDbContext(IDatabaseType databaseType):
             base(databaseType.Connectionstring(),true)
@@ -26,6 +27,7 @@ namespace BalangaAMS.DataLayer.EntityFramework
         public DbSet<GatheringSchedule> GatheringSchedules { get; set; }
         public DbSet<AttendanceLog> AttendanceLogs { get; set; }
         public DbSet<OtherLocalLog> OtherLocalLogs { get; set; }
+        public DbSet<ChurchId> ChurchIds { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

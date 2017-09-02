@@ -366,9 +366,14 @@ namespace BalangaAMS.WPF.View
                     break;
                 case GatheringTimeOption.Late_Only:
                     dailyInfoList = _attendanceRetriever.GetAttendanceInfoOfBrethrenWhoAttendedThisGatheringLate(
-                        selectedSession);
+                        selectedSession).OrderBy(b => b.Brethren.Name).ToList();;
+
+                    //Add Other Local
+                    dailyInfoList.AddRange(
+                        _attendanceRetriever.GetAttendanceInfoOfOtherLocalWhoAttendedThisGatheringLate(selectedSession));
+
                     title = "Mga Kapatid na late sa pagkakatipon na ito.";
-                    break;
+                    return dailyInfoList;
                 case GatheringTimeOption.Attended_Live:
                     dailyInfoList = _attendanceRetriever.GetAttendanceInfoOfBrethrenWhoAttendedThisGatheringLive(
                         selectedSession);
@@ -381,9 +386,14 @@ namespace BalangaAMS.WPF.View
                     break;
                 default:
                     dailyInfoList = _attendanceRetriever.GetAttendanceInfoOfBrethrenWhoAttendedThisGathering(
-                        selectedSession);
+                        selectedSession).OrderBy(b => b.Brethren.Name).ToList();
+
+                    //Add Other Local
+                    dailyInfoList.AddRange(
+                        _attendanceRetriever.GetAttendanceInfoOfOtherLocalWhoAttendedThisGathering(selectedSession));
+   
                     title = "Mga kapatid na dumalo sa pagkakatipon na ito.";
-                    break;
+                    return dailyInfoList;
             }
             return dailyInfoList.OrderBy(b => b.Brethren.Name).ToList();
         }

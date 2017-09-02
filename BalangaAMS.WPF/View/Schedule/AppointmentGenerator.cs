@@ -39,7 +39,7 @@ namespace BalangaAMS.WPF.View.Schedule
             return session.Select(g => new Gathering
             {
                 IsStarted = g.IsStarted,
-                HasAttendees = _sessionRetriever.HasAttendees(g.Id),
+                HasAttendees = (_sessionRetriever.HasAttendees(g.Id) || _sessionRetriever.HasOtherLocalAttendees(g.Id)),
                 Start = g.Date,
                 End = g.Date.AddHours(1),
                 UniqueId = Convert.ToString(g.Id),
@@ -54,7 +54,7 @@ namespace BalangaAMS.WPF.View.Schedule
             return session.Select(g => new Gathering
             {
                 IsStarted = g.IsStarted,
-                HasAttendees = _sessionRetriever.HasAttendees(g.Id),
+                HasAttendees = (_sessionRetriever.HasAttendees(g.Id) || _sessionRetriever.HasOtherLocalAttendees(g.Id)),
                 Start = g.Date,
                 End = g.Date.AddHours(1),
                 UniqueId = Convert.ToString(g.Id),
@@ -70,7 +70,7 @@ namespace BalangaAMS.WPF.View.Schedule
             return session.Select(g => new Gathering
             {
                 IsStarted = g.IsStarted,
-                HasAttendees = _sessionRetriever.HasAttendees(g.Id),
+                HasAttendees = (_sessionRetriever.HasAttendees(g.Id) || _sessionRetriever.HasOtherLocalAttendees(g.Id)),
                 Start = g.Date,
                 End = g.Date.AddHours(1),
                 UniqueId = Convert.ToString(g.Id),
