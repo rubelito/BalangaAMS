@@ -19,7 +19,7 @@
     </Window.Resources>
     
     <Grid>
-        <telerik:RadScheduleView Name="ScheduleView" ShowDialog="ScheduleView_OnShowDialog"
+        <telerik:RadScheduleView Name="ScheduleView" ShowDialog="ScheduleView_OnShowDialog" VisibleRangeChanged="ScheduleView_OnVisibleRangeChanged"
                                  AppointmentStyleSelector="{StaticResource AppointmentItemStyleSelector}">
             <telerik:RadScheduleView.ViewDefinitions>
                 <telerik:MonthViewDefinition VisibleDays="35"/>

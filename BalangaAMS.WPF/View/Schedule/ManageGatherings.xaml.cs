@@ -18,7 +18,8 @@ namespace BalangaAMS.WPF.View.Schedule
         private readonly IChurchGatheringRetriever _sessionRetriever;
 
         private ObservableCollection<Gathering> _gatheringList;
-        private readonly DateTime _datenow;
+        private DateTime _datenow;
+        private bool _isControlReady;
 
         public ManageGatherings(DateTime dateNow)
         {
@@ -36,8 +37,8 @@ namespace BalangaAMS.WPF.View.Schedule
             HighlightNextAndPreviousMonth();
         }
 
-        private void ManageSchedule_Loaded(object sender, RoutedEventArgs e)
-        {
+        private void ManageSchedule_Loaded(object sender, RoutedEventArgs e){
+            _isControlReady = true;
             PopulateSlotWithGatherings();
         }
 
@@ -125,6 +126,14 @@ namespace BalangaAMS.WPF.View.Schedule
                 e.Cancel = true;
             }
             e.Cancel = true;
+        }
+
+        private void ScheduleView_OnVisibleRangeChanged(object sender, EventArgs e){
+            if (_isControlReady){
+                _datenow = ScheduleView.CurrentDate;
+                PopulateSlotWithGatherings();
+                HighlightNextAndPreviousMonth();
+            }
         }
     }
 }

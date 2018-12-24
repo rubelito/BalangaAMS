@@ -22,7 +22,8 @@ namespace BalangaAMS.WPF.View.Schedule
         private bool _isCanceled = true;
         private GatheringSession _selectedGathering;
         private List<GatheringSession> _selectedGatherings; 
-        private readonly DateTime _currentDate;
+        private DateTime _currentDate;
+        private bool _isControllReady;
 
         public SelectSchedule(DateTime currentDate)
         {
@@ -48,8 +49,8 @@ namespace BalangaAMS.WPF.View.Schedule
             ScheduleView.Commit();
         }
 
-        private void SelectSchedule_Loaded(object sender, RoutedEventArgs e)
-        {
+        private void SelectSchedule_Loaded(object sender, RoutedEventArgs e){
+            _isControllReady = true;
             PopulateSlotWithGatherings();
         }
 
@@ -157,5 +158,13 @@ namespace BalangaAMS.WPF.View.Schedule
         }
 
         public bool CanSelectNotStartedGathering { get; set; }
+
+        private void ScheduleView_OnVisibleRangeChanged(object sender, EventArgs e){
+            if (_isControllReady){
+                _currentDate = ScheduleView.CurrentDate;
+                HighlightNextAndPreviousMonth();
+                PopulateSlotWithGatherings();
+            }
+        }
     }
 }
